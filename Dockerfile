@@ -6,7 +6,7 @@
 FROM ubuntu as builder
 
 ENV HOME=/root
-ENV KEY_LABEL=key
+ENV KEY_LABEL=thekey
 ENV SO_PIN=1234
 ENV PIN=1234
 ENV LABEL="xks-proxy"
