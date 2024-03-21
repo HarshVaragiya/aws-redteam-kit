@@ -1,0 +1,7 @@
+{
+    "XksProxyUriPath": "/aws-red-team-kit/kms/xks/v1",
+    "XksProxyAuthenticationCredential": {
+        "AccessKeyId": "BETWEEN2TENAND3TENCHARACTERS",
+        "RawSecretAccessKey": "PleaseReplaceThisWithSomeSecretOfLength43To64+vE="
+    }
+}

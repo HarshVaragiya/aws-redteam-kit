@@ -6,4 +6,11 @@ services:
       - "./settings.toml:/var/local/xks-proxy/.secret/settings.toml"
     ports:
       - "8080:80"
-  
+
+  cloudflared:
+    depends_on:
+      - xks-proxy
+    image: cloudflare/cloudflared:latest
+    # environment: 
+    #   - CLOUDFLARE_TUNNEL_TOKEN: $CLOUDFLARE_TUNNEL_TOKEN
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN} --loglevel debug
