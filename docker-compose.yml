@@ -1,0 +1,9 @@
+version: "3"
+services:
+  xks-proxy:
+    build: .
+    volumes:
+      - "./settings.toml:/var/local/xks-proxy/.secret/settings.toml"
+    ports:
+      - "8080:80"
+  
