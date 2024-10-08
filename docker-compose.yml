@@ -3,10 +3,10 @@ services:
   xks-proxy:
     image: xks-proxy:latest
     volumes:
-      - "./settings.toml:/var/local/xks-proxy/.secret/settings.toml"
+      - "./config/settings.toml:/var/local/xks-proxy/.secret/settings.toml"
     ports:
       - "8080:80"
 
   cloudflared:
     image: cloudflare/cloudflared:latest
-    command: tunnel --loglevel debug --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN} 
+    command: tunnel --loglevel debug --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}

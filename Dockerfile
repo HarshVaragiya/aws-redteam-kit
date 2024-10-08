@@ -3,7 +3,7 @@
 
 # See docker/README.md for more information.
 
-FROM ubuntu as builder
+FROM ubuntu:22.04 AS builder
 
 ENV HOME=/root
 ENV KEY_LABEL=thekey
@@ -19,9 +19,9 @@ RUN apt update -y && apt install git softhsm opensc curl build-essential -y && \
 
 RUN softhsm2-util --init-token --slot 0 --label $LABEL --so-pin $SO_PIN --pin $PIN
 RUN pkcs11-tool --module /usr/lib/softhsm/libsofthsm2.so \
-                --token-label xks-proxy --login --login-type user \
-                --keygen --id F0 --label $KEY_LABEL --key-type aes:32 \
-                --pin $PIN
+    --token-label xks-proxy --login --login-type user \
+    --keygen --id F0 --label $KEY_LABEL --key-type aes:32 \
+    --pin $PIN
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="$HOME/.cargo/bin:$PATH"
@@ -30,9 +30,9 @@ RUN mkdir -p /var/local/xks-proxy/.secret
 
 ENV PROJECT_DIR=$HOME/aws-kms-xks-proxy/xks-axum
 RUN cargo build --release --manifest-path=$PROJECT_DIR/Cargo.toml && \
-        cp $PROJECT_DIR/target/release/xks-proxy /usr/sbin/xks-proxy
+    cp $PROJECT_DIR/target/release/xks-proxy /usr/sbin/xks-proxy
 
-FROM ubuntu
+FROM ubuntu:22.04
 COPY --from=builder /etc/softhsm/ /etc/softhsm/
 COPY --from=builder /var/lib/softhsm/ /var/lib/softhsm/
 COPY --from=builder /usr/lib/ /usr/lib/

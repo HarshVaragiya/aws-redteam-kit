@@ -1,4 +1,4 @@
-keys:
+random_keys:
 	echo "AKIA$(openssl rand 10 | base32)"
 	echo $(openssl rand 40 | base64)
 
