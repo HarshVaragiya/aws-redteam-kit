@@ -9,3 +9,6 @@ xks-proxy:
 
 infra: xks-proxy
 	docker-compose up -d
+
+keyswitch:
+	cd KeySwitch && go build -o ../keyswitch .
