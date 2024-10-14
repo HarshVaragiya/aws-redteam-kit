@@ -25,4 +25,4 @@ The tool works in the following manner :
 5. Delete all the snapshots in the AWS Region (Nuke).
 
 # Simulating a Ransomware Attacking using ARK
-- Follow the medium blog (Link to be posted shortly)
+https://medium.com/@harsh8v/redefining-ransomware-attacks-on-aws-using-aws-kms-xks-dea668633802
